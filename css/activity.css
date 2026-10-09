@@ -1,0 +1,134 @@
+/* Activity: month-by-month GitHub calendar */
+
+.heat-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  overflow-x: auto;
+}
+
+@keyframes pop {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.heat-foot {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  min-height: 1.5em;
+}
+
+.mon {
+  max-width: 540px;
+}
+
+.mhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.mhead b {
+  font:
+    700 20px "Plus Jakarta Sans",
+    sans-serif;
+}
+
+.mhead button {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.mhead button:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+.mhead button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.wk,
+.mcal {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.wk {
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.dy {
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 9px;
+  background: var(--line);
+  color: var(--muted);
+  font:
+    500 13px Inter,
+    sans-serif;
+  cursor: default;
+  opacity: 0;
+  transform: scale(0.6);
+  animation: pop 0.4s ease forwards;
+  animation-delay: var(--d);
+}
+
+.dy[data-l="1"] {
+  background: color-mix(in srgb, var(--accent-2) 38%, var(--bg));
+  color: var(--ink);
+}
+
+.dy[data-l="2"] {
+  background: color-mix(in srgb, var(--accent-2) 65%, var(--bg));
+  color: var(--ink);
+}
+
+.dy[data-l="3"] {
+  background: var(--accent-2);
+  color: #fff;
+}
+
+.dy[data-l="4"] {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.dy[data-x] {
+  background: transparent;
+  border: 1px dashed var(--line);
+}
+
+.dy:hover,
+.dy:focus-visible {
+  outline: 2px solid var(--highlight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dy {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,157 +1,860 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Devesh Rayudu | Portfolio</title>
-
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-
-  <link rel="stylesheet" href="style/style.css" />
-</head>
-<body>
-
-  <header class="hero">
-    <nav class="navbar container">
-      <a href="#" class="logo">Devesh Rayudu</a>
-
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Devesh Rayudu | Computer Vision, ML & Backend</title>
+    <meta
+      name="description"
+      content="Portfolio of Devesh Rayudu, a final-year Computer Science student working on computer vision, machine learning and backend projects."
+    />
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pipelines.css" />
+    <link rel="stylesheet" href="css/activity.css" />
+  </head>
+  <body>
+    <nav aria-label="Sections">
+      <a href="#about">About</a><a href="#experience">Experience</a
+      ><a href="#pipelines">Pipelines</a><a href="#projects">Projects</a
+      ><a href="#activity">Activity</a><a href="#skills">Skills</a
+      ><a href="#contact">Contact</a
+      ><button id="theme" aria-label="Switch light or dark theme">◐</button>
     </nav>
 
-    <div class="container hero-content">
-      
-    <div class="hero-title">
-    <h1>Hi, I'm Devesh Rayudu.</h1>
-    <img
-      src="./assets/profile.jpeg"
-      alt="Image of Devesh Rayudu"
-      class="profile-image"
-      />
-</div>
-
-      <p class="hero-description">
-        I'm a Computer Science undergraduate with experience in machine learning research,
-        software development, and building real-world AI applications.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="assets/Devesh_Rayudu_Resume.pdf" target="_blank" class="btn btn-secondary">
-          Resume
-        </a>
+    <header class="hero">
+      <div class="wrap">
+        <div>
+          <h1>Devesh Rayudu</h1>
+          <p>
+            Final-year CS student who turns messy data into systems that work.
+          </p>
+          <p class="role" style="margin-top: -6px">
+            I build <span id="type"></span><i class="caret"></i>
+          </p>
+          <a class="btn main" href="#projects">See my projects</a
+          ><a class="btn" href="#contact">Get in touch</a>
+        </div>
+        <img
+          class="avatar"
+          src="assets/images/profile.jpg"
+          width="360"
+          height="360"
+          alt="Portrait of Devesh Rayudu"
+        />
       </div>
+    </header>
 
-      <div class="hero-meta">
-        <span><b>Location:</b> Hyderabad, India</span>
-        <span><b>CGPA:</b> 9.0</span>
-        <span><b>Email:</b> deveshrayudu@gmail.com</span>
+    <main class="wrap">
+      <section id="about">
+        <h2>About me</h2>
+        <p class="lede">
+          I'm a final-year Computer Science student at Vignan Institute of
+          Technology and Science in Hyderabad (CGPA 8.9). I work across computer
+          vision, machine learning and databases, and I'm looking for software
+          engineering roles starting in 2027.
+        </p>
+        <div class="learn">
+          <div>
+            <b>I build to learn</b><br />I pick a real problem and work out the
+            rest as I go.
+          </div>
+          <div>
+            <b>I check my work</b><br />Metrics like RMSE, SSIM and test
+            results, not "looks right".
+          </div>
+          <div>
+            <b>I explain it back</b><br />I co-founded Nexus Club and ran
+            development and DevOps workshops.
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <p class="lede">Two internships, both about getting data to behave.</p>
+        <div class="tl">
+          <div class="job">
+            <h3>Computer Vision Intern, ISRO NRSC</h3>
+            <p class="when">Hyderabad · Jun – Aug 2026</p>
+            <p>
+              Built a pipeline that aligns and radiometrically calibrates
+              satellite images from different sensors.
+            </p>
+            <details>
+              <summary>What I did</summary>
+              <ul>
+                <li>
+                  Structured the code as 14+ modules, plus a PyQt5 GUI and a
+                  command line on one shared pipeline.
+                </li>
+                <li>
+                  Added top-of-atmosphere reflectance correction for Cartosat,
+                  LISS-3/4, Sentinel-2 and Landsat.
+                </li>
+                <li>
+                  Used ECC for sub-pixel registration and Farneback optical flow
+                  to double-check it.
+                </li>
+                <li>
+                  Fixed bugs I found along the way, such as double corrections
+                  and a hardcoded fit line.
+                </li>
+              </ul>
+            </details>
+          </div>
+          <div class="job">
+            <h3>Software Development Intern, Wissen Infotech</h3>
+            <p class="when">May 2025</p>
+            <p>
+              Automated data migration between MySQL, PostgreSQL and Oracle.
+            </p>
+            <details>
+              <summary>What I did</summary>
+              <ul>
+                <li>Added validation and integrity checks to the transfers.</li>
+                <li>
+                  Wrote structured CRUD operations and tuned PostgreSQL queries
+                  to run faster.
+                </li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="pipelines">
+        <h2>How my projects work</h2>
+        <p class="lede">
+          Each project explained as a pipeline, from input to output. Press run
+          to watch the data move through the steps, and open "Under the hood"
+          for the details.
+        </p>
+        <div class="ptabs" role="tablist">
+          <button role="tab" data-p="sat" aria-selected="true">
+            Satellite image alignment</button
+          ><button role="tab" data-p="ddos" aria-selected="false">
+            DDoS detection and mitigation</button
+          ><button role="tab" data-p="ml" aria-selected="false">
+            Productivity prediction</button
+          ><button role="tab" data-p="xdb" aria-selected="false">
+            Cross-database transfer
+          </button>
+        </div>
+        <div class="pipe" id="pipe-sat" role="tabpanel">
+          <div class="pipe-top">
+            <p>
+              Takes two satellite images from different sensors and makes them
+              directly comparable: same units, same grid, aligned to a fraction
+              of a pixel. Built at ISRO NRSC as the Radiometric Alignment
+              project.
+            </p>
+          </div>
+          <ul class="facts">
+            <li>Python</li>
+            <li>GDAL / rasterio</li>
+            <li>OpenCV</li>
+            <li>PyQt5</li>
+            <li>14+ modules</li>
+            <li>CLI + desktop GUI</li>
+            <li>17 of 17 tests passed</li>
+          </ul>
+          <div class="runbar">
+            <button class="run">Run the pipeline</button
+            ><span class="prog"><i></i></span>
+          </div>
+          <ol class="flow">
+            <li class="st">
+              <span class="nd">1</span>
+              <div class="bd">
+                <h4>Input validation</h4>
+                <p>
+                  Checks the coordinate system, nodata values, and how much the
+                  two images overlap before any work starts.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Along the way this caught real problems: coordinate-system
+                    mismatches on LISS-class GeoTIFFs, a nodata override applied
+                    unconditionally, and a wrong denominator in the overlap
+                    percentage.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">2</span>
+              <div class="bd">
+                <h4>Radiometric correction</h4>
+                <p>
+                  Converts raw pixel values (DN) to top-of-atmosphere
+                  reflectance, using each sensor&#x27;s own solar irradiance and
+                  spectral response.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Supports Cartosat, LISS-3/4, Sentinel-2 (L1C) and Landsat,
+                    with the real Landsat-8 OLI response data. It runs at the
+                    start of the pipeline, before resampling, which removed a
+                    double-correction bug. Earth-sun distance comes from a
+                    lookup table.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">3</span>
+              <div class="bd">
+                <h4>Footprint intersection and cropping</h4>
+                <p>
+                  Works out the true polygon overlap of the two images and crops
+                  both to the shared area.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Uses shapely and rasterio for the footprint geometry, so the
+                    crop follows the real overlap instead of a bounding box.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">4</span>
+              <div class="bd">
+                <h4>Resampling to a common grid</h4>
+                <p>
+                  Brings both images onto the same pixel grid, using blur-aware
+                  block averaging or GDAL&#x27;s bilinear, cubic, nearest or
+                  average methods.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    The blur-aware path applies a Gaussian PSF pre-blur and then
+                    area-weighted block averaging, a from-scratch resampler
+                    checked against GDAL. A separate bilinear copy is used for
+                    registration, so the blur does not hurt matching.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">5</span>
+              <div class="bd">
+                <h4>Sub-pixel registration</h4>
+                <p>
+                  Refines the geometric match between the two images with ECC
+                  alignment (Euclidean or affine motion).
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    I started with ORB + RANSAC and switched to ECC for
+                    sub-pixel accuracy. Farneback optical flow then
+                    double-checks the remaining shift.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">6</span>
+              <div class="bd">
+                <h4>Homogeneity detection</h4>
+                <p>
+                  Finds the spatially uniform areas, where comparing two sensors
+                  is most trustworthy.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Combines coefficient of variation, local standard deviation
+                    and GLCM-based texture checks.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">7</span>
+              <div class="bd">
+                <h4>Cross-sensor regression and diagnostics</h4>
+                <p>
+                  Fits the relationship between the two sensors&#x27; values and
+                  produces plots to judge the result.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Reduced Major Axis regression, with Theil-Sen as an outlier
+                    check. Plots include error histograms, shift-arrow grids and
+                    hexbin scatter plots.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">8</span>
+              <div class="bd">
+                <h4>Logging and outputs</h4>
+                <p>
+                  Saves the aligned rasters, the diagnostic plots, and two run
+                  logs: a short summary and a full technical log.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Every run writes to its own timestamped folder, so results
+                    can be compared and reproduced.
+                  </p>
+                </details>
+              </div>
+            </li>
+          </ol>
+          <p class="out">
+            <b>What comes out.</b> Aligned and cropped rasters, a common-region
+            composite, diagnostic plots and run logs. In the final report, the
+            sub-pixel residual stayed under 0.5 px, and a Landsat-8 vs
+            Sentinel-2 example had 91% overlap with an ECC shift of about 0.04
+            by 0.07 px. Limits: reflectance only (no atmospheric correction) and
+            clear-sky scenes.
+          </p>
+        </div>
+        <div class="pipe" id="pipe-ddos" role="tabpanel">
+          <div class="pipe-top">
+            <p>
+              A Python re-implementation of the DOE-DTL research paper: spot a
+              DLDoS attack on a software-defined network, locate the attacking
+              IP addresses, and block them.
+            </p>
+          </div>
+          <ul class="facts">
+            <li>Python</li>
+            <li>P4 / BMv2</li>
+            <li>Mininet</li>
+            <li>ELM classifier</li>
+            <li>Whale Optimization</li>
+            <li>P4Runtime</li>
+          </ul>
+          <div class="runbar">
+            <button class="run">Run the pipeline</button
+            ><span class="prog"><i></i></span>
+          </div>
+          <ol class="flow">
+            <li class="st">
+              <span class="nd">1</span>
+              <div class="bd">
+                <h4>Count the traffic</h4>
+                <p>
+                  A data-statistics module in the network switches keeps running
+                  counters of the packets passing through.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    On real switches this is a P4 program on BMv2. For offline
+                    testing, a Python simulation mimics the same registers.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">2</span>
+              <div class="bd">
+                <h4>Pre-detect</h4>
+                <p>
+                  A coarse check in the control plane flags traffic that looks
+                  unusual.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>This is the paper&#x27;s traffic-monitoring module.</p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">3</span>
+              <div class="bd">
+                <h4>Extract features</h4>
+                <p>
+                  Turns the packet stream into features over multiple sliding
+                  time windows.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Features come from packet fields such as TCP flags, length
+                    and window size. A window is labelled an attack when most of
+                    its packets are attack packets (over 80%).
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">4</span>
+              <div class="bd">
+                <h4>Detect with an ELM</h4>
+                <p>
+                  An Extreme Learning Machine classifies each window as normal
+                  or attack.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Its weights are tuned by an improved Whale Optimization
+                    Algorithm (a dual optimization). I compared this against a
+                    vanilla ELM.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">5</span>
+              <div class="bd">
+                <h4>Locate suspicious IPs</h4>
+                <p>
+                  A second algorithm, run in the switch, pinpoints which source
+                  addresses are sending the attack.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Controlled by tunable thresholds. I rescaled one from 10000
+                    to 150 so it fits a small Mininet network.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">6</span>
+              <div class="bd">
+                <h4>Maintain the suspicious list</h4>
+                <p>
+                  The control plane confirms and keeps track of the attack
+                  sources.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    This is the list-maintenance part of the paper&#x27;s
+                    mitigation stage.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">7</span>
+              <div class="bd">
+                <h4>Deploy mitigation rules</h4>
+                <p>
+                  Block rules are pushed from the controller into the
+                  switch&#x27;s match-action table.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Done through P4Runtime. Register values are read through the
+                    BMv2 Thrift CLI.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">8</span>
+              <div class="bd">
+                <h4>Evaluate</h4>
+                <p>
+                  Scores the run on detection rate, false-alarm rates, precision
+                  and response times.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    The same scoring the paper uses: CR, FNR, FPR, DR, precision
+                    and Jaccard index. A live-traffic capture pipeline supports
+                    retraining.
+                  </p>
+                </details>
+              </div>
+            </li>
+          </ol>
+          <p class="out">
+            <b>What comes out.</b> A Fig. 6-style event log (detect, confirm
+            sources, deploy rules, reset), the evaluation metrics, and charts.
+            Caveat from the README: offline evaluation uses a Python simulation
+            of the data-plane modules, and the live path runs the P4 program on
+            BMv2 inside Mininet.
+          </p>
+        </div>
+        <div class="pipe" id="pipe-ml" role="tabpanel">
+          <div class="pipe-top">
+            <p>
+              Asks whether a person&#x27;s phone habits can predict their
+              self-reported productivity, comparing three models, and wraps the
+              analysis in an interactive dashboard.
+            </p>
+          </div>
+          <ul class="facts">
+            <li>R</li>
+            <li>Shiny</li>
+            <li>XGBoost</li>
+            <li>10,000 rows</li>
+            <li>26 columns</li>
+          </ul>
+          <div class="runbar">
+            <button class="run">Run the pipeline</button
+            ><span class="prog"><i></i></span>
+          </div>
+          <ol class="flow">
+            <li class="st">
+              <span class="nd">1</span>
+              <div class="bd">
+                <h4>Load the data</h4>
+                <p>
+                  A mobile-usage dataset of 10,000 users and 26 columns: usage,
+                  notifications, sleep, device, demographics, and the
+                  productivity score.
+                </p>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">2</span>
+              <div class="bd">
+                <h4>Check data quality</h4>
+                <p>Counts missing values before any modelling.</p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>This is the first step of the exploratory script.</p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">3</span>
+              <div class="bd">
+                <h4>Explore correlations</h4>
+                <p>
+                  Looks at how strongly each habit relates to the productivity
+                  score.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Daily screen time stands out with a correlation of about
+                    -0.85. Age and gaming hours show almost none on their own.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">4</span>
+              <div class="bd">
+                <h4>Set a baseline</h4>
+                <p>A simple one-feature model gives something to beat.</p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    A GLM and a decision tree (rpart), both using screen time
+                    only.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">5</span>
+              <div class="bd">
+                <h4>Compare the final models</h4>
+                <p>
+                  Trains a linear regression and an XGBoost model on the same
+                  data.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Linear regression (screen time and gaming) reached an RMSE
+                    of about 9.94. XGBoost (1,000 rounds, depth 4) reached about
+                    9.99.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">6</span>
+              <div class="bd">
+                <h4>Interpret the result</h4>
+                <p>Both models land at nearly the same error.</p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    That suggests the relationship is mostly linear and driven
+                    by one dominant feature, rather than complex interactions.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">7</span>
+              <div class="bd">
+                <h4>Explore it in a dashboard</h4>
+                <p>
+                  A Shiny app lets you change predictors, model and train/test
+                  split, and run it live.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    Four tabs: Overview, Correlation Explorer, Model Performance
+                    (RMSE, MAE and a predicted-vs-actual plot), and Predict for
+                    custom inputs.
+                  </p>
+                </details>
+              </div>
+            </li>
+          </ol>
+          <p class="out">
+            <b>What comes out.</b> Two scripts for the fixed reference runs and
+            a dashboard for experimenting. Next steps listed in the README:
+            regularised regression, encoding categorical features, and
+            cross-validation.
+          </p>
+        </div>
+        <div class="pipe" id="pipe-xdb" role="tabpanel">
+          <div class="pipe-top">
+            <p>
+              A desktop tool that moves tables between MySQL, PostgreSQL and
+              Oracle, which describe the same data with different column types.
+            </p>
+          </div>
+          <ul class="facts">
+            <li>Python</li>
+            <li>Tkinter</li>
+            <li>MySQL</li>
+            <li>PostgreSQL</li>
+            <li>Oracle</li>
+          </ul>
+          <div class="runbar">
+            <button class="run">Run the pipeline</button
+            ><span class="prog"><i></i></span>
+          </div>
+          <ol class="flow">
+            <li class="st">
+              <span class="nd">1</span>
+              <div class="bd">
+                <h4>Choose source and target</h4>
+                <p>
+                  Pick the source database and table, and the database to copy
+                  into, from a desktop interface.
+                </p>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">2</span>
+              <div class="bd">
+                <h4>Map the schema</h4>
+                <p>
+                  A schema-mapping engine translates each column type into its
+                  equivalent on the target database.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    This is the hard part: the three systems name and store
+                    types differently.
+                  </p>
+                </details>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">3</span>
+              <div class="bd">
+                <h4>Transform the data</h4>
+                <p>
+                  Rows are converted to fit the target&#x27;s types before they
+                  are written.
+                </p>
+              </div>
+            </li>
+            <li class="st">
+              <span class="nd">4</span>
+              <div class="bd">
+                <h4>Load into the target</h4>
+                <p>
+                  The table is created and filled on the destination database.
+                </p>
+                <details>
+                  <summary>Under the hood</summary>
+                  <p>
+                    I used the same ideas in my Wissen Infotech internship,
+                    adding validation and integrity checks to automated
+                    migrations.
+                  </p>
+                </details>
+              </div>
+            </li>
+          </ol>
+          <p class="out">
+            <b>What comes out.</b> The same table, readable in a different
+            database. A README for this repo is still to come.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p class="lede">
+          This list reads straight from my GitHub. Open any project for its full
+          README, or jump to how it works.
+        </p>
+
+        <div class="stats" id="stats">
+          <div class="rv"><b id="sRepos">0</b><span>public projects</span></div>
+          <div class="rv" style="--d: 80ms">
+            <b id="sLangs">0</b><span>languages</span>
+          </div>
+          <div class="rv" style="--d: 160ms">
+            <b id="sContrib">0</b><span>contributions, last year</span>
+          </div>
+        </div>
+        <p class="src" id="src"></p>
+        <div class="tools">
+          <div
+            class="chips"
+            id="chips"
+            role="group"
+            aria-label="Filter by language"
+          ></div>
+          <input
+            id="q"
+            type="search"
+            placeholder="Search projects"
+            aria-label="Search projects"
+          />
+        </div>
+        <div class="grid" id="grid"></div>
+        <p class="lede" id="others" style="margin-top: 20px"></p>
+      </section>
+
+      <section id="activity">
+        <h2>GitHub activity</h2>
+        <p class="lede">
+          Step through the last year one month at a time. Hover or tap a day to
+          see its count.
+        </p>
+        <div class="heat-wrap mon">
+          <div class="mhead">
+            <button id="mPrev" aria-label="Previous month">&#8249;</button
+            ><b id="mLabel"></b
+            ><button id="mNext" aria-label="Next month">&#8250;</button>
+          </div>
+          <div class="wk" aria-hidden="true">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span
+            ><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div
+            class="mcal"
+            id="heat"
+            aria-label="Contribution calendar for the selected month"
+          ></div>
+          <div class="heat-foot" id="heatFoot" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <p class="lede">
+          What I reach for most. Click a skill to find the projects that mention
+          it.
+        </p>
+        <div class="skills">
+          <div>
+            <h3>Languages</h3>
+            <p>
+              <button class="sk" data-s="Python">Python</button
+              ><button class="sk" data-s="SQL">SQL</button
+              ><button class="sk" data-s="R">R</button>
+            </p>
+          </div>
+          <div>
+            <h3>Vision and ML</h3>
+            <p>
+              <button class="sk" data-s="OpenCV">OpenCV</button
+              ><button class="sk" data-s="rasterio">rasterio</button
+              ><button class="sk" data-s="scikit-learn">scikit-learn</button
+              ><button class="sk" data-s="XGBoost">XGBoost</button
+              ><button class="sk" data-s="pandas">pandas</button
+              ><button class="sk" data-s="NumPy">NumPy</button>
+            </p>
+          </div>
+          <div>
+            <h3>Databases</h3>
+            <p>
+              <button class="sk" data-s="MySQL">MySQL</button
+              ><button class="sk" data-s="PostgreSQL">PostgreSQL</button
+              ><button class="sk" data-s="Oracle">Oracle</button>
+            </p>
+          </div>
+          <div>
+            <h3>Fundamentals</h3>
+            <p>
+              <button class="sk" data-s="Data structures and algorithms">
+                Data structures and algorithms</button
+              ><button class="sk" data-s="OOP">OOP</button
+              ><button class="sk" data-s="DBMS">DBMS</button>
+            </p>
+          </div>
+        </div>
+        <h3 style="margin: 36px 0 8px">Beyond code</h3>
+        <p class="lede" style="margin: 0">
+          Top 10 at HackV'25 (100+ teams) · Co-founder of Nexus Club · Coding
+          contest lead for HackerRank, running 2 contests
+        </p>
+      </section>
+    </main>
+    <dialog id="dlg" aria-labelledby="dt">
+      <div class="dh">
+        <h3 id="dt"></h3>
+        <button id="dx" aria-label="Close">×</button>
       </div>
-    </div>
-  </header>
+      <div class="md" id="dm"></div>
+      <div class="md" style="padding-top: 0">
+        <a id="dl" class="btn main" target="_blank" rel="noopener"
+          >Open on GitHub</a
+        >
+      </div>
+    </dialog>
 
-  <section id="about" class="section container">
-    <h2>About Me</h2>
-    <p>
-      I am a B.Tech Computer Science student passionate about machine learning,
-      backend development, and building real-world AI applications.
-    </p>
-  </section>
-
-  <section id="experience" class="section container">
-    <h2>Experience</h2>
-
-    <article class="card">
-      <h3>Machine Learning Research Intern</h3>
-      <p class="card-subtitle">NIT Warangal</p>
-      <p class="card-date">March 2026 - Present</p>
-      <ul>
-        <li>Researching adversarial machine learning and model robustness.</li>
-        <li>Applying causal inference and statistical analysis.</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Software Development Intern</h3>
-      <p class="card-subtitle">Wissen Infotech</p>
-      <p class="card-date">May 2025</p>
-      <ul>
-        <li>Automated cross-database migration pipelines.</li>
-        <li>Built CRUD systems and optimized SQL queries.</li>
-      </ul>
-    </article>
-  </section>
-
-  <section id="projects" class="section container">
-    <h2>Projects</h2>
-
-    <div class="grid">
-      <article class="card">
-        <h3>Interactive ML Dashboard</h3>
-        <p class="card-subtitle">R, Shiny, XGBoost</p>
-        <p>Built a dashboard for model training and prediction.</p>
-      </article>
-
-      <article class="card">
-        <h3>AI Study Planner</h3>
-        <p class="card-subtitle">Python, Flask</p>
-        <p>Generates personalized study schedules.</p>
-      </article>
-
-      <article class="card">
-        <h3>Cross-Database Transfer Tool</h3>
-        <p class="card-subtitle">Python, Tkinter</p>
-        <p>GUI tool for database migration.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="skills" class="section container">
-    <h2>Skills</h2>
-
-    <div class="skills">
-      <span>Python</span>
-      <span>Java</span>
-      <span>JavaScript</span>
-      <span>R</span>
-      <span>SQL</span>
-      <span>Flask</span>
-      <span>Django</span>
-      <span>MySQL</span>
-      <span>PostgreSQL</span>
-      <span>Git</span>
-      <span>REST APIs</span>
-      <span>Machine Learning</span>
-      <span>Data Structures</span>
-      <span>Algorithms</span>
-    </div>
-  </section>
-
-  <section id="contact" class="section container contact">
-    <h2>Let's Connect</h2>
-    <p>deveshrayudu@gmail.com</p>
-
-    <div class="social-links">
-      <a href="https://github.com/DeveshRayudu" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/deveshrayudu/" target="_blank">LinkedIn</a>
-      <a href="https://leetcode.com/u/deveshrayudu/" target="_blank">LeetCode</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2026 Devesh Rayudu. All rights reserved.</p>
-  </footer>
-
-</body>
+    <footer id="contact">
+      <div class="wrap">
+        <h2>Let's talk</h2>
+        <p>
+          I'm open to software engineering roles starting in 2027, and happy to
+          chat about computer vision, ML or backend work.
+        </p>
+        <p>
+          <a href="mailto:deveshrayudu@gmail.com">deveshrayudu@gmail.com</a> ·
+          <a href="https://github.com/DeveshRayudu">GitHub</a>
+        </p>
+      </div>
+    </footer>
+    <script src="data/snapshot.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/readme.js" defer></script>
+    <script src="js/github.js" defer></script>
+    <script src="js/activity.js" defer></script>
+    <script src="js/pipelines.js" defer></script>
+    <script src="js/projects.js" defer></script>
+    <script src="js/ui.js" defer></script>
+  </body>
 </html>
