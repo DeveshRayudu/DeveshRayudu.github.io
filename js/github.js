@@ -56,5 +56,5 @@ async function liveDays() {
   );
   if (!r.ok) throw new Error("cal");
   const j = await r.json();
-  return j.contributions.map((d) => [d.date, d.count]);
+  return j.contributions.map((d) => [d.date, d.count, d.level]);
 }

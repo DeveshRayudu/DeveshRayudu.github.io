@@ -14,12 +14,12 @@ css/
   layout.css          Nav, hero, sections, timeline, footer
   components.css      Buttons, chips, cards, dialog, README styles
   pipelines.css       Pipeline tabs and the animated step flow
-  activity.css        Month-by-month GitHub calendar
+  activity.css        GitHub-style contribution graph
 js/
   utils.js            Shared helpers, reveal-on-scroll, count-up
   readme.js           README summary and Markdown rendering
   github.js           Live GitHub requests
-  activity.js         Contribution calendar
+  activity.js         Contribution graph
   pipelines.js        Pipeline tabs and run animation
   projects.js         Project cards, filters, search, dialog, start-up
   ui.js               Hero typing line, theme toggle

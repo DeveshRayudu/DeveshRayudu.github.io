@@ -12,6 +12,13 @@
   --accent-2: #3b82f6;
   --highlight: #f59e0b;
   --footer: #0f172a;
+  /* GitHub contribution graph palette (light) */
+  --gh-0: #ebedf0;
+  --gh-1: #9be9a8;
+  --gh-2: #40c463;
+  --gh-3: #30a14e;
+  --gh-4: #216e39;
+  --gh-outline: rgba(27, 31, 35, 0.06);
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -27,6 +34,12 @@
     --accent: #7db2ff;
     --accent-2: #5b9bf5;
     --footer: #080e1a;
+    --gh-0: #161b22;
+    --gh-1: #0e4429;
+    --gh-2: #006d32;
+    --gh-3: #26a641;
+    --gh-4: #39d353;
+    --gh-outline: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -39,4 +52,10 @@
   --accent: #7db2ff;
   --accent-2: #5b9bf5;
   --footer: #080e1a;
+  --gh-0: #161b22;
+  --gh-1: #0e4429;
+  --gh-2: #006d32;
+  --gh-3: #26a641;
+  --gh-4: #39d353;
+  --gh-outline: rgba(255, 255, 255, 0.05);
 }
