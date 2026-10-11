@@ -749,25 +749,40 @@
       <section id="activity">
         <h2>GitHub activity</h2>
         <p class="lede">
-          Step through the last year one month at a time. Hover or tap a day to
-          see its count.
+          My contribution graph for the last year, laid out the way GitHub shows
+          it. Hover or tap a day for its count.
         </p>
-        <div class="heat-wrap mon">
-          <div class="mhead">
-            <button id="mPrev" aria-label="Previous month">&#8249;</button
-            ><b id="mLabel"></b
-            ><button id="mNext" aria-label="Next month">&#8250;</button>
+        <div class="gh">
+          <p class="gh-total" id="ghTotal"></p>
+          <div class="gh-scroll" id="ghScroll">
+            <div class="gh-inner">
+              <div class="gh-months" id="ghMonths" aria-hidden="true"></div>
+              <div class="gh-main">
+                <div class="gh-days" aria-hidden="true">
+                  <span>Mon</span><span>Wed</span><span>Fri</span>
+                </div>
+                <div
+                  class="gh-grid"
+                  id="heat"
+                  role="img"
+                  aria-label="Contribution graph"
+                ></div>
+              </div>
+            </div>
           </div>
-          <div class="wk" aria-hidden="true">
-            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span
-            ><span>Thu</span><span>Fri</span><span>Sat</span>
+          <div class="gh-foot">
+            <a
+              href="https://github.com/DeveshRayudu"
+              target="_blank"
+              rel="noopener"
+              >View my profile on GitHub</a
+            >
+            <div class="gh-legend" aria-hidden="true">
+              Less <i data-l="0"></i><i data-l="1"></i><i data-l="2"></i
+              ><i data-l="3"></i><i data-l="4"></i> More
+            </div>
           </div>
-          <div
-            class="mcal"
-            id="heat"
-            aria-label="Contribution calendar for the selected month"
-          ></div>
-          <div class="heat-foot" id="heatFoot" aria-live="polite"></div>
+          <div class="gh-tip" id="ghTip" role="tooltip" hidden></div>
         </div>
       </section>
 

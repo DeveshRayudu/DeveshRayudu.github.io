@@ -1,94 +1,127 @@
-/* Month-by-month contribution calendar. */
+/* GitHub-style contribution graph: one column per week (Sunday to Saturday),
+   month labels on top, GitHub's own colour levels, hover/tap tooltips. */
 
+function ordinal(n) {
+  const s = ["th", "st", "nd", "rd"],
+    v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+/* days: [[YYYY-MM-DD, count, level?], ...] in date order. Returns the total. */
 function heat(days) {
-  const map = new Map(days),
-    months = [...new Set(days.map((d) => d[0].slice(0, 7)))].sort();
+  const grid = $("#heat"),
+    monthRow = $("#ghMonths"),
+    tip = $("#ghTip"),
+    box = $(".gh");
+  if (!days.length) return 0;
+
   const max = Math.max(1, ...days.map((d) => d[1])),
-    total = days.reduce((s, d) => s + d[1], 0);
-  let idx = months.length - 1;
-  const root = $("#heat"),
-    foot = $("#heatFoot");
-  const fmt = (k, o) =>
-    new Date(k + "T00:00:00Z").toLocaleDateString(
-      "en-GB",
-      Object.assign({ timeZone: "UTC" }, o),
-    );
-  function draw() {
-    const ym = months[idx],
-      y = +ym.slice(0, 4),
-      m = +ym.slice(5, 7);
-    $("#mLabel").textContent = fmt(ym + "-01", {
-      month: "long",
-      year: "numeric",
-    });
-    $("#mPrev").disabled = idx === 0;
-    $("#mNext").disabled = idx === months.length - 1;
-    const lead = new Date(Date.UTC(y, m - 1, 1)).getUTCDay(),
-      dim = new Date(Date.UTC(y, m, 0)).getUTCDate();
-    let out = "",
-      sum = 0;
-    for (let i = 0; i < lead; i++) out += "<span></span>";
-    for (let d = 1; d <= dim; d++) {
-      const k = ym + "-" + String(d).padStart(2, "0"),
-        v = map.get(k),
-        n = v || 0;
-      sum += n;
-      const lab =
-        v === undefined
-          ? "No data for " + fmt(k, { day: "numeric", month: "short" })
-          : (n || "No") +
-            " contribution" +
-            (n === 1 ? "" : "s") +
-            " on " +
-            fmt(k, { day: "numeric", month: "short", year: "numeric" });
-      out +=
-        '<button class="dy" data-l="' +
-        (n ? Math.min(4, Math.ceil((n / max) * 4)) : 0) +
-        '"' +
-        (v === undefined ? ' data-x="1"' : "") +
-        ' data-t="' +
-        lab +
-        '" aria-label="' +
-        lab +
-        '" style="--d:' +
-        d * 12 +
-        'ms">' +
-        d +
-        "</button>";
+    total = days.reduce((sum, d) => sum + d[1], 0),
+    offset = new Date(days[0][0] + "T00:00:00Z").getUTCDay(),
+    labels = [];
+  let cells = "",
+    lastMonth = -1;
+
+  days.forEach((d, i) => {
+    const dt = new Date(d[0] + "T00:00:00Z"),
+      row = dt.getUTCDay(),
+      col = Math.floor((i + offset) / 7),
+      n = d[1],
+      level =
+        d[2] !== undefined
+          ? d[2]
+          : n
+            ? Math.min(4, Math.ceil((n / max) * 4))
+            : 0,
+      when =
+        dt.toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" }) +
+        " " +
+        ordinal(dt.getUTCDate()),
+      text =
+        (n || "No") +
+        " contribution" +
+        (n === 1 ? "" : "s") +
+        " on " +
+        when +
+        ".";
+    if (row === 0 || i === 0) {
+      const m = dt.getUTCMonth();
+      if (m !== lastMonth) {
+        labels.push({
+          col,
+          name: dt.toLocaleDateString("en-US", {
+            month: "short",
+            timeZone: "UTC",
+          }),
+        });
+        lastMonth = m;
+      }
     }
-    root.innerHTML = out;
-    root.dataset.sum =
-      sum +
-      " contribution" +
-      (sum === 1 ? "" : "s") +
-      " in " +
-      fmt(ym + "-01", { month: "long", year: "numeric" });
-    foot.textContent = root.dataset.sum;
+    cells +=
+      '<i data-l="' +
+      level +
+      '" data-t="' +
+      text +
+      '" style="grid-row:' +
+      (row + 1) +
+      ";grid-column:" +
+      (col + 1) +
+      ";--d:" +
+      col * 12 +
+      'ms"></i>';
+  });
+
+  if (labels.length > 1 && labels[1].col - labels[0].col < 2)
+    labels.shift(); /* avoid overlap */
+  grid.innerHTML = cells;
+  monthRow.innerHTML = labels
+    .map(
+      (l) =>
+        '<span style="grid-column:' +
+        (l.col + 1) +
+        ' / span 3">' +
+        l.name +
+        "</span>",
+    )
+    .join("");
+
+  const summary =
+    total + " contribution" + (total === 1 ? "" : "s") + " in the last year";
+  $("#ghTotal").textContent = summary;
+  grid.setAttribute("aria-label", "Contribution graph: " + summary);
+
+  function show(cell) {
+    const c = cell.getBoundingClientRect(),
+      b = box.getBoundingClientRect();
+    tip.textContent = cell.dataset.t;
+    tip.hidden = false;
+    const half = tip.offsetWidth / 2 + 8;
+    tip.style.left =
+      Math.min(Math.max(c.left - b.left + c.width / 2, half), b.width - half) +
+      "px";
+    tip.style.top = c.top - b.top - 6 + "px";
   }
-  root.addEventListener("mouseover", (e) => {
-    const b = e.target.closest(".dy");
-    if (b) foot.textContent = b.dataset.t;
+  grid.addEventListener("mouseover", (e) => {
+    const c = e.target.closest("i[data-t]");
+    if (c) show(c);
   });
-  root.addEventListener("focusin", (e) => {
-    const b = e.target.closest(".dy");
-    if (b) foot.textContent = b.dataset.t;
+  grid.addEventListener("click", (e) => {
+    const c = e.target.closest("i[data-t]");
+    if (c) show(c);
   });
-  root.addEventListener(
-    "mouseleave",
-    () => (foot.textContent = root.dataset.sum),
-  );
-  $("#mPrev").onclick = () => {
-    if (idx > 0) {
-      idx--;
-      draw();
-    }
-  };
-  $("#mNext").onclick = () => {
-    if (idx < months.length - 1) {
-      idx++;
-      draw();
-    }
-  };
-  draw();
+  grid.addEventListener("mouseleave", () => (tip.hidden = true));
+
+  const scroller = $("#ghScroll");
+  scroller.scrollLeft =
+    scroller.scrollWidth; /* start at the most recent week */
+  new IntersectionObserver(
+    (e, o) => {
+      if (e[0].isIntersecting) {
+        grid.classList.add("in");
+        o.disconnect();
+      }
+    },
+    { threshold: 0.2 },
+  ).observe(grid);
   return total;
 }
