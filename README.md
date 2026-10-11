@@ -62,3 +62,10 @@ calendar live. A repo only gets its own project card once it has a real README.
 - The calendar uses a free third-party API (github-contributions-api.jogruber.de)
   for live data and falls back to the snapshot if it is unavailable.
 - Fonts (Plus Jakarta Sans, Inter) load from Google Fonts.
+
+## After you change files
+
+GitHub Pages lets browsers cache files for about 10 minutes. The CSS and
+script links in `index.html` carry a version tag (`?v=...`). When you change a
+CSS, JS or data file, change that tag in `index.html` too, so visitors never
+get a new page with old scripts.

@@ -23,7 +23,7 @@ async function liveRepos() {
   const l = (await r.json()).filter((x) => !x.fork && x.name !== USER);
   return Promise.all(
     l.map(async (x) => {
-      let rd = "";
+      let rd = null; /* null = could not be fetched; "" = repo has no README */
       try {
         const q = await tmo(
           5000,
@@ -36,6 +36,7 @@ async function liveRepos() {
           ),
         );
         if (q.ok) rd = (await q.text()).slice(0, 14000);
+        else if (q.status === 404) rd = "";
       } catch (e) {}
       return {
         name: x.name,

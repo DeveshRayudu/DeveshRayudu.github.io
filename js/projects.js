@@ -99,36 +99,27 @@ document.querySelectorAll(".sk").forEach(
     }),
 );
 
-async function init() {
-  let repos = null,
-    days = null,
-    live = false;
-  try {
-    repos = await liveRepos();
-    live = true;
-  } catch (e) {}
-  try {
-    days = await liveDays();
-  } catch (e) {}
-  if (!repos) repos = SNAP.repos;
-  if (!days) days = SNAP.days;
+/* Fills the project cards, filters and the "also on GitHub" line. */
+function renderProjects(repos, live, snap) {
   repos.forEach((r) => {
-    r.full = !isThin(r.readme) || (!!r.desc && !isThin(r.readme));
+    r.full = !isThin(r.readme);
     r.sum = summarize(r.readme || "", r.desc);
   });
   REPOS = repos;
-  const when = new Date(SNAP.at + "T00:00:00Z").toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+  const when = snap.at
+    ? new Date(snap.at + "T00:00:00Z").toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC",
+      })
+    : "";
   $("#src").className = "src" + (live ? " live" : "");
   $("#src").innerHTML =
     "<i></i>" +
     (live
       ? "Live from GitHub. New repos appear when you push them."
-      : "Synced from GitHub on " + when + ".");
+      : "Synced from GitHub" + (when ? " on " + when : "") + ".");
   drawChips();
   drawCards();
   const rest = repos.filter((r) => !r.full);
@@ -146,8 +137,13 @@ async function init() {
         .join(", ") +
       ". These have no full README yet. Add one and each gets its own card here."
     : "";
-  const total = heat(days);
-  const so = new IntersectionObserver(
+}
+
+/* Counts up the three numbers when they scroll into view. */
+function watchStats(repos, total) {
+  const box = $("#stats");
+  if (!box) return;
+  new IntersectionObserver(
     (e, o) => {
       if (e[0].isIntersecting) {
         countUp($("#sRepos"), repos.length);
@@ -160,7 +156,50 @@ async function init() {
       }
     },
     { threshold: 0.3 },
-  );
-  so.observe($("#stats"));
+  ).observe(box);
+}
+
+/* Each part of the page loads on its own, so one failure never blanks the rest. */
+async function init() {
+  const snap = window.SNAP || { at: "", repos: [], days: [] };
+  let repos = null,
+    days = null,
+    live = false;
+  try {
+    repos = await liveRepos();
+    live = true;
+  } catch (e) {}
+  try {
+    days = await liveDays();
+  } catch (e) {}
+  if (!repos || !repos.length) {
+    repos = snap.repos;
+    live = false;
+  }
+  if (!days || !days.length) days = snap.days;
+  /* If a README download failed, reuse the saved copy instead of hiding the project. */
+  const saved = {};
+  snap.repos.forEach((r) => (saved[r.name] = r));
+  repos.forEach((r) => {
+    if (r.readme === null) r.readme = saved[r.name] ? saved[r.name].readme : "";
+  });
+
+  let total = days.reduce((sum, d) => sum + d[1], 0);
+  try {
+    renderProjects(repos, live, snap);
+  } catch (err) {
+    console.error("Projects could not be shown:", err);
+    $("#src").textContent =
+      "The project list could not be loaded. You can see my work on GitHub.";
+  }
+  try {
+    total = heat(days);
+  } catch (err) {
+    console.error("Activity graph could not be drawn:", err);
+    $("#ghTotal").textContent = total + " contributions in the last year";
+    $("#heat").textContent =
+      "The graph could not be drawn. You can see it on GitHub.";
+  }
+  watchStats(repos, total);
 }
 init();
