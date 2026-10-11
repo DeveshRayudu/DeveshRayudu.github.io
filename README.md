@@ -28,6 +28,8 @@ data/
 assets/images/        Profile photo, favicon
 scripts/
   update_snapshot.py  Refreshes data/snapshot.js
+.github/workflows/
+  refresh-data.yml    Refreshes the GitHub data every 30 minutes
 ```
 
 Script order in `index.html` matters: later files use helpers from earlier ones.
@@ -69,3 +71,13 @@ GitHub Pages lets browsers cache files for about 10 minutes. The CSS and
 script links in `index.html` carry a version tag (`?v=...`). When you change a
 CSS, JS or data file, change that tag in `index.html` too, so visitors never
 get a new page with old scripts.
+
+## Automatic data refresh
+
+`.github/workflows/refresh-data.yml` runs every 30 minutes. It re-reads your
+repositories and contribution graph, and commits `data/snapshot.js` only when
+something changed, which then redeploys the site. To refresh right now, open
+the Actions tab, choose "Refresh GitHub data", and press Run workflow.
+
+The page also asks a live contribution API and keeps the larger count for each
+day, so neither source can hide recent activity.
