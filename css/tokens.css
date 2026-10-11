@@ -1,0 +1,42 @@
+/* Design tokens: colours, safe-area insets and the dark theme.
+   Dark mode follows the visitor's system setting; the toggle in the nav
+   overrides it through the data-theme attribute on <html>. */
+
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #dde3ec;
+  --accent: #1d4ed8;
+  --accent-2: #3b82f6;
+  --highlight: #f59e0b;
+  --footer: #0f172a;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1220;
+    --surface: #121c31;
+    --ink: #e5ecf6;
+    --muted: #9aa9bf;
+    --line: #23314b;
+    --accent: #7db2ff;
+    --accent-2: #5b9bf5;
+    --footer: #080e1a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1220;
+  --surface: #121c31;
+  --ink: #e5ecf6;
+  --muted: #9aa9bf;
+  --line: #23314b;
+  --accent: #7db2ff;
+  --accent-2: #5b9bf5;
+  --footer: #080e1a;
+}
